@@ -1,48 +1,142 @@
- Tutorial: How to Set Up Your Project
+# Welcome to this tutorial!
 
-Welcome to this tutorial! In this guide, we will walk you through the steps to set up and use this project on your local machine.
-=========================================================================================================================================
+In this guide, we will walk you through the steps to set up and use this project on your local machine.
 
-Prerequisites
-[Check out the requirments here](https://github.com/HeliosSecurityReaserch/How-to-make-your-own-DNS-Server)
+---
 
-Installation
+ Prerequisites
 
-1. Format SD card and install Image usign raspberry pi imager
-start by selecting your PI model from the first drop down menu  , Second select ERASE at the bottom of the second drop down menu , 
-Third select your SD card and then click NEXT and click ok this will format the drive automatically and you will get a pop up showing its done
+[Check out the requirements here](https://github.com/HeliosSecurityResearch/How-to-make-your-own-DNS-Server)
 
----  Image of what format settings should be in Raspberry pi imager https://imgur.com/yWyycyd
+---
 
+ Installation
 
-2. Install your distro
-I use Pi os Lite depending on your Pi Model you will either use 32bit or 64bit image , for Raspberry pi 3 you will use 32bit , Raspberry pi 4 + will use 64bit
-Select your Pi model in the 1st drop down menu , in the 2nd drop down menu select Raspberry Pi OS (Other) , you will see Raspberry Pi OS Lite select your version 32 or 64 , select your SD card from the 3rd drop down menu,
-this time BEFORE you click NEXT use the hot key ( CTRL + SHIFT + X ) in that order to pop up an additional configuration menu , here you can give you pi a hostname and enter your username and password , 
-theres another page called services click that and enable SSH and click use password authentication this will use the username and password you just set after click save at the bottom 
+ 1. Format the SD card and install the image using Raspberry Pi Imager
 
------- Example of username and wireless lan configuration screen https://imgur.com/umyVpOa
+Start by selecting your Raspberry Pi model from the first drop-down menu. Next, select "Erase" at the bottom of the second drop-down menu. Then, select your SD card and click "Next" and then "OK". This will automatically format the drive, and you will see a pop-up indicating that it's done.
 
 
-3. When your done with image and extra configuration you can now click next it will ask if you want to use the setting you just set click yes and let it format the card with the image
+**Example image of format settings in Raspberry Pi Imager:**  
+[https://imgur.com/yWyycyd](https://imgur.com/yWyycyd)
 
-4. When image is baked onto SD card you can unplug it from pc and now insert it into your unplugged Raspberry Pi , 
-after SD card is in you can now either plug in ethernet or use wifi after power on , i prefer to use ethernet for stable connection, 
-either way you will  need to use an app like FING on a different device on your network to see the Raspberry Pi Ip address or login to your router and see that way through device connections 
-now that you have your Raspberry Pi IP address you can now open up CMD/Terminal on windows or something like PUTTY to ssh into it , you can use command " ssh usernameyouset@yourraspberrypiIP.1111
-this should prompt you enter a password , this will be the one you setup during Raspberry Pi Imager configuration , if everything worked out you should be see your username@yourhostname in the terminal
-now your in the Raspberry Pi offically 
+ 2. Install your distro
 
+I recommend using Pi OS Lite. Depending on your Pi model, you will either use the 32-bit or 64-bit image. For Raspberry Pi 3, use the 32-bit version. For Raspberry Pi 4 and above, use the 64-bit version. Select your Pi model in the first drop-down menu, then in the second drop-down menu, select Raspberry Pi OS (Other), then choose Raspberry Pi OS Lite (32-bit or 64-bit). 
 
-5. Lets update this PI , first lets get sudo/root user so we dont run in to permission issues later on , this can be done by using command " sudo su " , 
-this may prompt you for a password again the one you set during configuration , now you will see root on your name
-to update run " sudo apt update " (this only updates package list , to offically update you will need to run the following command after " sudo apt update is done"
-run  sudo apt upgrade to officially install the updated package list may prompt something say this amount of space will be used do you want to continue [Y/n] , the captial letter is default choice if you just click enter
-in this case Y is what we want , just click enter and it will upgrade the packages 
+Select your SD card from the third drop-down menu. Before you click "Next", press the hotkey (CTRL + SHIFT + X) to open an additional configuration menu. Here you can set your Pi’s hostname, username, and password. 
 
-6. Now we will install docker which will create our Adguard container 
-to install docker you can run the following command "   sudo apt install docker.io docker-compose -y   " -y will automatically select yes from the [Y/n] choice so it automatic
-once docker is installed we are ready to deploy our Adguard container
+On the next page, called "Services", enable SSH and select "Use password authentication". This will allow you to log in using the username and password you just set. After configuring, click "Save" at the bottom.
 
 
-7. 
+**Example of username and wireless LAN configuration screen:**  
+[https://imgur.com/umyVpOa](https://imgur.com/umyVpOa)
+
+ . Finalize the image installation
+
+Once you’ve completed the image and configuration settings, click "Next". It will ask if you want to use the settings you just set. Click "Yes" and let it format the card with the image.
+
+ . Insert the SD card into your Raspberry Pi
+
+Once the image is successfully written to the SD card, unplug it from your PC and insert it into your Raspberry Pi. After inserting the SD card, you can either plug in an Ethernet cable or use Wi-Fi. I prefer to use Ethernet for a stable connection. 
+
+To find your Raspberry Pi’s IP address, use an app like FING on another device connected to the same network or check your router’s device connections. Once you have the IP address, open a CMD/Terminal window on Windows or use a program like PUTTY to SSH into the Pi. 
+
+Use the following command to connect:
+
+ ssh username@yourraspberrypiIP 
+ 
+It will prompt you for the password you set during the configuration. If everything worked correctly, you should see `username@hostname` in the terminal. Now you are logged into your Raspberry Pi!
+
+. Update your Pi
+
+To ensure you have the latest packages, run the following commands:
+
+ First, become the root user to avoid permission issues later:
+
+ sudo su 
+
+It may prompt you for the password again (the one you set during configuration). Once you see `root` in your terminal prompt, you're in.
+
+ Update the package list:
+
+sudo apt update
+
+
+. Once the package list is updated, upgrade the packages:
+
+sudo apt upgrade
+
+You may be prompted to confirm the upgrade. Type `Y` and hit Enter to continue.
+
+----------------------------------------------------------------------------------------
+
+3. Install Docker
+
+To install Docker and Docker Compose, run the following command:
+
+sudo apt install docker.io docker-compose -y
+
+
+The `-y` flag automatically selects "yes" for any prompts, so the installation will proceed without requiring further input.
+
+-----------------------------------------------
+
+4. Create and start the AdGuard container
+
+To create and start the AdGuard container, run the following command:
+
+docker run --name adguardhome
+--restart unless-stopped
+-v adguard_data:/opt/adguardhome/work
+-v adguard_config:/opt/adguardhome/conf
+-p 53:53/tcp -p 53:53/udp
+-p 80:80/tcp -p 443:443/tcp -p 443:443/udp -p 3000:3000/tcp
+-d adguard/adguardhome
+
+
+This will set up and start the AdGuard container. To verify that the container is running, use the following command:
+
+docker ps
+
+You should see the AdGuard container listed.
+----------------------------------------------------
+
+5. Access the AdGuard Dashboard
+
+To access the AdGuard dashboard, open a web browser on a device connected to the same network and enter the IP address of your Raspberry Pi. You should be directed to the first setup page. Click "Next" without making any changes on this page. On one of the following pages, you will be asked to set a username and password—this will be your admin login. 
+
+Once you’re done with the setup, you should see the dashboard page.  
+---  
+**Example of AdGuard Dashboard:**  
+[https://imgur.com/My88eJk](https://imgur.com/My88eJk)  
+(Note: I blurred some information in the image, but you will see your DNS server details here.)
+
+The best way to deploy AdGuard is by adding it to your router. While this guide doesn't go over that process (since router interfaces vary), there are many tutorials available on YouTube.
+
+Alternatively, you can manually set the DNS on your devices if you can't access your router. Set your device’s DNS to the IP address of your Raspberry Pi (e.g., `10.0.2.1`).
+
+Now, your traffic will be routed through your AdGuard DNS server.
+
+6 Extra Configuration
+
+After completing the setup and logging into the admin dashboard, you can further configure your server.
+
+. Under **Settings**, click on **DNS Settings**. Here you can configure the upstream DNS servers. I recommend using the following for better security and zero-log policies:
+https://dns10.quad9.net/dns-query 
+https://dns.quad9.net/dns-query
+
+ Next, go to **Filters** and click **DNS Block List**. Click "Add Block List" at the bottom left, then choose "From List" and select all available options. 
+
+**Note:** If you use a VPN, the block list "HaGeZi's Encrypted DNS/VPN/TOR/Proxy Bypass" may block some of your VPN queries, causing it not to connect properly.
+
+7. Enjoy Your DNS Server
+
+Now, you're ready to enjoy your DNS server, which is ad-free and offers enhanced security, knowing that your DNS queries aren’t being logged. You have full control over your network’s DNS traffic!
+
+
+
+
+
+
+
