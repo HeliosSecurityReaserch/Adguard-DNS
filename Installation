@@ -1,0 +1,18 @@
+# Tutorial: How to Set Up Your Project
+
+Welcome to this tutorial! In this guide, we will walk you through the steps to set up and use this project on your local machine.
+
+## Table of Contents
+
+1. [Prerequisites](#prerequisites)
+2. [Installation](#installation)
+3. [Configuration](#configuration)
+4. [Running the Application](#running-the-application)
+
+## Prerequisites
+[Check out the requirments here](https://github.com/HeliosSecurityReaserch/How-to-make-your-own-DNS-Server)
+
+## Installation
+
+1. Format SD card and install Image
+![Raspberry Pi Imager](https://cdn.discordapp.com/attachments/1309835703668052009/1311951331078176829/9D327358-9187-4701-8278-4E6F2E96F9F7.png?ex=674ab964&is=674967e4&hm=c05f23f56643035c2bb576343c964ba0c9eb341b9bb478a4d0fa8064aa325e20&)
