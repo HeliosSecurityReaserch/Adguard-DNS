@@ -1,18 +1,48 @@
-# Tutorial: How to Set Up Your Project
+ Tutorial: How to Set Up Your Project
 
 Welcome to this tutorial! In this guide, we will walk you through the steps to set up and use this project on your local machine.
+=========================================================================================================================================
 
-## Table of Contents
-
-1. [Prerequisites](#prerequisites)
-2. [Installation](#installation)
-3. [Configuration](#configuration)
-4. [Running the Application](#running-the-application)
-
-## Prerequisites
+Prerequisites
 [Check out the requirments here](https://github.com/HeliosSecurityReaserch/How-to-make-your-own-DNS-Server)
 
-## Installation
+Installation
 
-1. Format SD card and install Image
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/pCuxTrt" data-context="false" ><a href="//imgur.com/a/pCuxTrt"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+1. Format SD card and install Image usign raspberry pi imager
+start by selecting your PI model from the first drop down menu  , Second select ERASE at the bottom of the second drop down menu , 
+Third select your SD card and then click NEXT and click ok this will format the drive automatically and you will get a pop up showing its done
+
+---  Image of what format settings should be in Raspberry pi imager https://imgur.com/yWyycyd
+
+
+2. Install your distro
+I use Pi os Lite depending on your Pi Model you will either use 32bit or 64bit image , for Raspberry pi 3 you will use 32bit , Raspberry pi 4 + will use 64bit
+Select your Pi model in the 1st drop down menu , in the 2nd drop down menu select Raspberry Pi OS (Other) , you will see Raspberry Pi OS Lite select your version 32 or 64 , select your SD card from the 3rd drop down menu,
+this time BEFORE you click NEXT use the hot key ( CTRL + SHIFT + X ) in that order to pop up an additional configuration menu , here you can give you pi a hostname and enter your username and password , 
+theres another page called services click that and enable SSH and click use password authentication this will use the username and password you just set after click save at the bottom 
+
+------ Example of username and wireless lan configuration screen https://imgur.com/umyVpOa
+
+
+3. When your done with image and extra configuration you can now click next it will ask if you want to use the setting you just set click yes and let it format the card with the image
+
+4. When image is baked onto SD card you can unplug it from pc and now insert it into your unplugged Raspberry Pi , 
+after SD card is in you can now either plug in ethernet or use wifi after power on , i prefer to use ethernet for stable connection, 
+either way you will  need to use an app like FING on a different device on your network to see the Raspberry Pi Ip address or login to your router and see that way through device connections 
+now that you have your Raspberry Pi IP address you can now open up CMD/Terminal on windows or something like PUTTY to ssh into it , you can use command " ssh usernameyouset@yourraspberrypiIP.1111
+this should prompt you enter a password , this will be the one you setup during Raspberry Pi Imager configuration , if everything worked out you should be see your username@yourhostname in the terminal
+now your in the Raspberry Pi offically 
+
+
+5. Lets update this PI , first lets get sudo/root user so we dont run in to permission issues later on , this can be done by using command " sudo su " , 
+this may prompt you for a password again the one you set during configuration , now you will see root on your name
+to update run " sudo apt update " (this only updates package list , to offically update you will need to run the following command after " sudo apt update is done"
+run  sudo apt upgrade to officially install the updated package list may prompt something say this amount of space will be used do you want to continue [Y/n] , the captial letter is default choice if you just click enter
+in this case Y is what we want , just click enter and it will upgrade the packages 
+
+6. Now we will install docker which will create our Adguard container 
+to install docker you can run the following command "   sudo apt install docker.io docker-compose -y   " -y will automatically select yes from the [Y/n] choice so it automatic
+once docker is installed we are ready to deploy our Adguard container
+
+
+7. 
