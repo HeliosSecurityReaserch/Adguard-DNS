@@ -18,7 +18,7 @@ Start by selecting your Raspberry Pi model from the first drop-down menu. Next, 
 
 
 **Example image of format settings in Raspberry Pi Imager:**  
-[https://imgur.com/yWyycyd](https://imgur.com/yWyycyd)
+[https://imgur.com/yWyycyd]
 
  2. Install your distro
 
@@ -30,7 +30,7 @@ On the next page, called "Services", enable SSH and select "Use password authent
 
 
 **Example of username and wireless LAN configuration screen:**  
-[https://imgur.com/umyVpOa](https://imgur.com/umyVpOa)
+[https://imgur.com/umyVpOa]
 
  . Finalize the image installation
 
@@ -109,7 +109,7 @@ To access the AdGuard dashboard, open a web browser on a device connected to the
 Once you’re done with the setup, you should see the dashboard page.  
 ---  
 **Example of AdGuard Dashboard:**  
-[https://imgur.com/My88eJk](https://imgur.com/My88eJk)  
+[https://imgur.com/My88eJk]
 (Note: I blurred some information in the image, but you will see your DNS server details here.)
 
 The best way to deploy AdGuard is by adding it to your router. While this guide doesn't go over that process (since router interfaces vary), there are many tutorials available on YouTube.
