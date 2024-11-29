@@ -4,7 +4,7 @@ To set up AdGuard (at home dns server) on your Raspberry Pi, you will need the f
 
 ### Hardware
 - Raspberry Pi (any model, preferably Raspberry Pi 3 or later)
-- MicroSD card (at least 8GB recommended)
+- MicroSD card (at least 16GB , 32GB recommended)
 - Power supply for Raspberry Pi
 - Network connection (Ethernet or Wi-Fi)
 
